@@ -1,16 +1,22 @@
-import { defineConfig } from 'vite';
-import { svelte } from '@sveltejs/vite-plugin-svelte';
+import { fileURLToPath, URL } from 'node:url'
 
-// https://vite.dev/config/
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
   server: {
-    port: 55939,
+    port: 50391,
     strictPort: true,
     allowedHosts: ['.trycloudflare.com'],
   },
   test: {
     environment: 'jsdom',
     globals: true,
-  }
-});
+  },
+})

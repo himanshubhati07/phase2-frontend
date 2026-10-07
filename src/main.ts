@@ -1,9 +1,10 @@
-import { mount } from 'svelte'
-import './app.css'
-import App from './App.svelte'
+import './assets/main.css'
+import 'vue-toastification/dist/index.css'
 
-const app = mount(App, {
-  target: document.getElementById('app')!,
-})
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import Toast from 'vue-toastification'
+import App from './App.vue'
+import router from './router'
 
-export default app
+createApp(App).use(createPinia()).use(router).use(Toast).mount('#app')
